@@ -276,3 +276,4 @@ C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemD
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Tests\obj\Debug\net9.0\OsService.Tests.pdb
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Tests\obj\Debug\net9.0\OsService.Tests.genruntimeconfig.cache
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Tests\obj\Debug\net9.0\ref\OsService.Tests.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Tests\obj\Debug\net9.0\OsService.Tests.sourcelink.json

@@ -120,3 +120,4 @@ C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemD
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Web\obj\Debug\net9.0\OsService.Web.pdb
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Web\obj\Debug\net9.0\OsService.Web.genruntimeconfig.cache
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Web\obj\Debug\net9.0\ref\OsService.Web.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Web\obj\Debug\net9.0\OsService.Web.sourcelink.json

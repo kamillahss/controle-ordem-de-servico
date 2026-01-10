@@ -9,3 +9,4 @@ C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemD
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\refint\OsService.Domain.dll
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.pdb
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\ref\OsService.Domain.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.sourcelink.json

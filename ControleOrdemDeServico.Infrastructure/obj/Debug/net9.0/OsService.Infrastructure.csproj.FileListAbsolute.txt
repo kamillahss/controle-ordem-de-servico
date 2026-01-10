@@ -13,3 +13,4 @@ C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemD
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net9.0\refint\OsService.Infrastructure.dll
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net9.0\OsService.Infrastructure.pdb
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net9.0\ref\OsService.Infrastructure.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net9.0\OsService.Infrastructure.sourcelink.json

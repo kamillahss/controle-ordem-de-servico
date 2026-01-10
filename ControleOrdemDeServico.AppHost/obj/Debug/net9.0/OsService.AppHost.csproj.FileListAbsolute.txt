@@ -129,3 +129,4 @@ C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemD
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.AppHost\obj\Debug\net9.0\OsService.AppHost.pdb
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.AppHost\obj\Debug\net9.0\OsService.AppHost.genruntimeconfig.cache
 C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.AppHost\obj\Debug\net9.0\ref\OsService.AppHost.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.AppHost\obj\Debug\net9.0\OsService.AppHost.sourcelink.json
