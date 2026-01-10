@@ -1,0 +1,11 @@
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\bin\Debug\net9.0\OsService.Domain.deps.json
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\bin\Debug\net9.0\OsService.Domain.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\bin\Debug\net9.0\OsService.Domain.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.AssemblyInfoInputs.cache
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.AssemblyInfo.cs
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.csproj.CoreCompileInputs.cache
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\refint\OsService.Domain.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\OsService.Domain.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Domain\obj\Debug\net9.0\ref\OsService.Domain.dll

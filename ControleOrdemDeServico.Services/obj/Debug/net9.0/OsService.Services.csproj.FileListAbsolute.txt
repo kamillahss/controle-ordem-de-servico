@@ -1,0 +1,17 @@
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Services.deps.json
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Services.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Services.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Domain.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Infrastructure.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Domain.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\bin\Debug\net9.0\OsService.Infrastructure.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.csproj.AssemblyReference.cache
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.AssemblyInfoInputs.cache
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.AssemblyInfo.cs
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.csproj.CoreCompileInputs.cache
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsServic.0DBF2526.Up2Date
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\refint\OsService.Services.dll
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\OsService.Services.pdb
+C:\Users\KamillaHéricadeSousa\Downloads\ControleOrdemDeServicoJR\ControleOrdemDeServico\ControleOrdemDeServico.Services\obj\Debug\net9.0\ref\OsService.Services.dll

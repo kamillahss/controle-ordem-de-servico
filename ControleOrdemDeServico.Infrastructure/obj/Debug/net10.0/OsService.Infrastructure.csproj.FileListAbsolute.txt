@@ -1,0 +1,15 @@
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\bin\Debug\net10.0\OsService.Infrastructure.deps.json
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\bin\Debug\net10.0\OsService.Infrastructure.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\bin\Debug\net10.0\OsService.Infrastructure.pdb
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\bin\Debug\net10.0\OsService.Domain.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\bin\Debug\net10.0\OsService.Domain.pdb
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.csproj.AssemblyReference.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.AssemblyInfoInputs.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.AssemblyInfo.cs
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.csproj.CoreCompileInputs.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsServic.B9E2DCD3.Up2Date
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\refint\OsService.Infrastructure.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\OsService.Infrastructure.pdb
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.Infrastructure\obj\Debug\net10.0\ref\OsService.Infrastructure.dll

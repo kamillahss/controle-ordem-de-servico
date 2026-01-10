@@ -1,0 +1,12 @@
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\bin\Debug\net10.0\OsService.ServiceDefaults.deps.json
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\bin\Debug\net10.0\OsService.ServiceDefaults.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\bin\Debug\net10.0\OsService.ServiceDefaults.pdb
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.csproj.AssemblyReference.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.AssemblyInfoInputs.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.AssemblyInfo.cs
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.csproj.CoreCompileInputs.cache
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\refint\OsService.ServiceDefaults.dll
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\OsService.ServiceDefaults.pdb
+G:\MOTZ\Teste\ControleOrdemDeServico\ControleOrdemDeServico.ServiceDefaults\obj\Debug\net10.0\ref\OsService.ServiceDefaults.dll
