@@ -11,37 +11,37 @@ public class ServiceOrdersApiClient(HttpClient httpClient)
     {
         var response = await httpClient.PostAsJsonAsync("/api/v1/serviceorders", request, cancellationToken);
         response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<OpenServiceOrderResponse>(cancellationToken) 
+        return await response.Content.ReadFromJsonAsync<OpenServiceOrderResponse>(cancellationToken)
             ?? throw new InvalidOperationException("Falha ao criar ordem de serviço");
     }
 
     public async Task UpdateStatusAsync(Guid serviceOrderId, int status, CancellationToken cancellationToken = default)
     {
-        var response = await httpClient.PatchAsJsonAsync($"/api/v1/serviceorders/{serviceOrderId}/status", 
+        var response = await httpClient.PatchAsJsonAsync($"/api/v1/serviceorders/{serviceOrderId}/status",
             new { serviceOrderId, newStatus = status }, cancellationToken);
         response.EnsureSuccessStatusCode();
     }
 
     public async Task UpdatePriceAsync(Guid serviceOrderId, decimal price, CancellationToken cancellationToken = default)
     {
-        var response = await httpClient.PutAsJsonAsync($"/api/v1/serviceorders/{serviceOrderId}/price", 
+        var response = await httpClient.PutAsJsonAsync($"/api/v1/serviceorders/{serviceOrderId}/price",
             new { serviceOrderId, price }, cancellationToken);
         response.EnsureSuccessStatusCode();
     }
 }
 
 public record ServiceOrderDto(
-Guid Id, 
-int Number, 
+Guid Id,
+int Number,
 Guid CustomerId,
 string CustomerName,
-string Description, 
+string Description,
 int Status,
-DateTime OpenedAt, 
-DateTime? StartedAt, 
-DateTime? FinishedAt, 
-decimal? Price, 
-string? Coin, 
+DateTime OpenedAt,
+DateTime? StartedAt,
+DateTime? FinishedAt,
+decimal? Price,
+string? Coin,
 DateTime? UpdatedPriceAt);
 
 public class OpenServiceOrderRequest

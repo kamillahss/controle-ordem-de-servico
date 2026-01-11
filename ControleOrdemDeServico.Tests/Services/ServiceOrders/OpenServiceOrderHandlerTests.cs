@@ -4,7 +4,6 @@ using OsService.Domain.Entities;
 using OsService.Domain.Enums;
 using OsService.Infrastructure.Repository;
 using OsService.Services.V1.ServiceOrders;
-using Xunit;
 
 namespace OsService.Tests.Services.ServiceOrders;
 

@@ -2,7 +2,7 @@
 
 namespace OsService.Infrastructure.Databases;
 
-public class DatabaseGenerator(IMasterDbConnectionFactory masterFactory, IOsServiceDbConnectionFactory osServiceFactory) 
+public class DatabaseGenerator(IMasterDbConnectionFactory masterFactory, IOsServiceDbConnectionFactory osServiceFactory)
 {
     private const string CreateDbSql = @"
 IF DB_ID(N'OsServiceDb') IS NULL

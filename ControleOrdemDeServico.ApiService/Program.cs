@@ -11,7 +11,7 @@ builder.AddServiceDefaults();
 builder.Services.AddServicesLayer();
 
 // Configure database connection factories
-var connectionString = builder.Configuration.GetConnectionString("OsServiceDb") 
+var connectionString = builder.Configuration.GetConnectionString("OsServiceDb")
     ?? throw new InvalidOperationException("Connection string 'OsServiceDb' not found.");
 
 // Master connection for creating database (connects to master database)

@@ -11,7 +11,7 @@ public class CustomersApiClient(HttpClient httpClient)
     {
         var response = await httpClient.PostAsJsonAsync("/api/v1/customers", request, cancellationToken);
         response.EnsureSuccessStatusCode();
-        
+
         var result = await response.Content.ReadFromJsonAsync<CreateCustomerResponse>(cancellationToken);
         return result?.Id ?? throw new InvalidOperationException("Falha ao criar cliente.");
     }
