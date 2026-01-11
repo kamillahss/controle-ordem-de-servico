@@ -1,4 +1,5 @@
 @page "/"
+@rendermode InteractiveServer
 @using OsService.Web.ApiClients
 @using OsService.Web.Components.Shared
 @inject NavigationManager Navigation
@@ -24,7 +25,6 @@
 }
 else
 {
-    <!-- Statistics Cards -->
     <div class="dashboard-grid fade-in" style="animation-delay: 0.1s;">
         <StatsCard 
             Icon="bi-hourglass-split"
@@ -43,7 +43,6 @@ else
             CssClass="info" />
     </div>
 
-    <!-- Feature Cards -->
     <div class="row g-4 mb-4">
         <div class="col-md-6 fade-in" style="animation-delay: 0.2s;">
             <div class="feature-card">
@@ -72,7 +71,6 @@ else
         </div>
     </div>
 
-    <!-- System Info -->
     <div class="feature-card mt-4 fade-in" style="animation-delay: 0.5s;">
         <h3><i class="bi bi-info-circle-fill text-info"></i> Sobre o Sistema</h3>
         <div class="row">
