@@ -1,0 +1,33 @@
+@* Componente reutilizável para cards de estatísticas *@
+
+<div class="stats-card @CssClass @(IsLoading ? "loading" : "")">
+    @if (!IsLoading)
+    {
+        <div class="stats-header">
+            <i class="bi @Icon stats-icon"></i>
+        </div>
+        <p class="stats-number">@Value</p>
+        <p class="stats-label">@Label</p>
+        @if (!string.IsNullOrEmpty(Trend))
+        {
+            <div class="stats-trend @TrendDirection">
+                <i class="bi @(TrendDirection == "up" ? "bi-arrow-up" : "bi-arrow-down")"></i>
+                <span>@Trend</span>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="loading-spinner" style="width: 2rem; height: 2rem; margin: 1rem auto;"></div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Icon { get; set; } = "bi-graph-up";
+    [Parameter] public string Value { get; set; } = "0";
+    [Parameter] public string Label { get; set; } = "Stat";
+    [Parameter] public string CssClass { get; set; } = "";
+    [Parameter] public string? Trend { get; set; }
+    [Parameter] public string TrendDirection { get; set; } = "up";
+    [Parameter] public bool IsLoading { get; set; } = false;
+}

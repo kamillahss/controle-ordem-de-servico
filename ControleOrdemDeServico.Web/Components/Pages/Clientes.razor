@@ -1,0 +1,245 @@
+@page "/clientes"
+@rendermode InteractiveServer
+@using OsService.Web.ApiClients
+@inject CustomersApiClient CustomersApi
+@inject IJSRuntime JS
+
+<PageTitle>Clientes</PageTitle>
+
+<div class="page-header fade-in">
+    <h1><i class="bi bi-people-fill"></i> Clientes</h1>
+    <p>Cadastro e gerenciamento de clientes</p>
+</div>
+
+<div class="action-buttons fade-in mb-3">
+    <button class="btn btn-primary btn-custom" 
+            type="button" 
+            @onclick="AbrirModal">
+        <i class="bi bi-plus-circle me-2"></i>
+        Novo Cliente
+    </button>
+
+    <button class="btn btn-outline-secondary btn-custom" @onclick="RefreshAsync">
+        <i class="bi bi-arrow-clockwise me-2"></i>
+        Atualizar
+    </button>
+</div>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        @errorMessage
+    </div>
+}
+
+@if (clientes is null)
+{
+    <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p class="mt-3">Carregando...</p>
+    </div>
+}
+else if (!clientes.Any())
+{
+    <div class="empty-state">
+        <i class="bi bi-person-x"></i>
+        <h3>Nenhum cliente cadastrado</h3>
+    </div>
+}
+else
+{
+    <div class="search-box fade-in">
+        <i class="bi bi-search"></i>
+        <input class="form-control" placeholder="Buscar..." @bind="searchTerm" @bind:event="oninput" />
+    </div>
+
+    <div class="custom-table fade-in">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Documento</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in ClientesFiltrados)
+                {
+                    <tr>
+                        <td><strong>@c.Name</strong></td>
+                        <td>@(c.Phone ?? "-")</td>
+                        <td>@(c.Email ?? "-")</td>
+                        <td>@(c.Document ?? "-")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<div class="modal fade" id="modal-formulario" tabindex="-1" aria-labelledby="modalFormularioLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <EditForm Model="@formulario" OnValidSubmit="OnSalvar">
+                <DataAnnotationsValidator />
+                
+                <div class="modal-header bg-primary text-white">
+                    <h3 class="modal-title" id="modalFormularioLabel">
+                        <i class="bi bi-person-plus me-2"></i>
+                        Cliente
+                    </h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Nome *</label>
+                                <InputText class="form-control" @bind-Value="formulario.Name" placeholder="Nome completo" maxlength="100" />
+                                <ValidationMessage For="@(() => formulario.Name)" class="text-danger" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Telefone</label>
+                                <InputText class="form-control" @bind-Value="formulario.Phone" placeholder="(00) 00000-0000" maxlength="20" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Email</label>
+                                <InputText type="email" class="form-control" @bind-Value="formulario.Email" placeholder="email@exemplo.com" maxlength="100" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Documento</label>
+                                <InputText class="form-control" @bind-Value="formulario.Document" placeholder="CPF/CNPJ" maxlength="20" />
+                            </div>
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(errorModal))
+                        {
+                            <div class="alert alert-danger mt-3">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                @errorModal
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                        @if (isSubmitting)
+                        {
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                        }
+                        <span>Salvar</span>
+                    </button>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    private CustomerDto[]? clientes;
+    private string searchTerm = string.Empty;
+    private string? errorMessage;
+
+    private CreateCustomerRequest formulario = new();
+    private bool isSubmitting = false;
+    private string? errorModal;
+
+    private IEnumerable<CustomerDto> ClientesFiltrados =>
+        clientes is null || string.IsNullOrWhiteSpace(searchTerm)
+            ? clientes ?? []
+            : clientes.Where(c =>
+                c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
+                (c.Phone?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (c.Email?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (c.Document?.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ?? false)
+            );
+
+    protected override async Task OnInitializedAsync() => await LoadClientesAsync();
+
+    private async Task LoadClientesAsync()
+    {
+        try
+        {
+            clientes = await CustomersApi.GetCustomersAsync();
+            errorMessage = null;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Erro: {ex.Message}";
+            clientes = [];
+        }
+    }
+
+    private async Task RefreshAsync() => await LoadClientesAsync();
+
+    private async Task AbrirModal()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                var modal = new bootstrap.Modal(document.getElementById('modal-formulario'));
+                modal.show();
+            ");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao abrir modal: {ex.Message}");
+            errorMessage = $"Erro ao abrir modal: {ex.Message}";
+        }
+    }
+
+    private async Task FecharModal()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("eval", @"
+                var modal = bootstrap.Modal.getInstance(document.getElementById('modal-formulario'));
+                if (modal) modal.hide();
+            ");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao fechar modal: {ex.Message}");
+        }
+    }
+
+    private async Task OnSalvar()
+    {
+        if (string.IsNullOrWhiteSpace(formulario.Name))
+        {
+            errorModal = "Nome é obrigatório.";
+            return;
+        }
+
+        isSubmitting = true;
+        errorModal = null;
+
+        try
+        {
+            await CustomersApi.CreateCustomerAsync(formulario);
+            
+            formulario = new();
+            await LoadClientesAsync();
+            
+            // Fecha a modal via JavaScript
+            await FecharModal();
+        }
+        catch (Exception ex)
+        {
+            errorModal = $"Erro: {ex.Message}";
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+}

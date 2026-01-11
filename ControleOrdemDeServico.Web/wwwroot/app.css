@@ -1,56 +1,366 @@
+/* ========== ROOT VARIABLES ========== */
+:root {
+    --sidebar-width: 280px;
+    --sidebar-collapsed: 80px;
+    --header-height: 70px;
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --secondary: #64748b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --info: #06b6d4;
+    --dark: #1e293b;
+    --light: #f8fafc;
+    --sidebar-bg: #1e293b;
+    --sidebar-hover: #334155;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+}
+
+/* ========== GLOBAL STYLES ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    font-size: 16px;
+    color: var(--text-primary);
+    background: var(--light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-a, .btn-link {
-    color: #006bb7;
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+a:hover {
+    color: var(--primary-dark);
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+/* ========== APP CONTAINER ========== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
 }
 
-.content {
-    padding-top: 1.1rem;
+/* ========== SIDEBAR ========== */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: var(--sidebar-bg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1:focus {
-    outline: none;
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
-.invalid {
-    outline: 1px solid #e50110;
+.brand-icon {
+    font-size: 2rem;
+    color: var(--primary);
 }
 
-.validation-message {
-    color: #e50110;
+.brand-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
-.blazor-error-boundary {
-    background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIG92ZXJmbG93PSJoaWRkZW4iPjxkZWZzPjxjbGlwUGF0aCBpZD0iY2xpcDAiPjxyZWN0IHg9IjIzNSIgeT0iNTEiIHdpZHRoPSI1NiIgaGVpZ2h0PSI0OSIvPjwvY2xpcFBhdGg+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMCkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMzUgLTUxKSI+PHBhdGggZD0iTTI2My41MDYgNTFDMjY0LjcxNyA1MSAyNjUuODEzIDUxLjQ4MzcgMjY2LjYwNiA1Mi4yNjU4TDI2Ny4wNTIgNTIuNzk4NyAyNjcuNTM5IDUzLjYyODMgMjkwLjE4NSA5Mi4xODMxIDI5MC41NDUgOTIuNzk1IDI5MC42NTYgOTIuOTk2QzI5MC44NzcgOTMuNTEzIDI5MSA5NC4wODE1IDI5MSA5NC42NzgyIDI5MSA5Ny4wNjUxIDI4OS4wMzggOTkgMjg2LjYxNyA5OUwyNDAuMzgzIDk5QzIzNy45NjMgOTkgMjM2IDk3LjA2NTEgMjM2IDk0LjY3ODIgMjM2IDk0LjM3OTkgMjM2LjAzMSA5NC4wODg2IDIzNi4wODkgOTMuODA3MkwyMzYuMzM4IDkzLjAxNjIgMjM2Ljg1OCA5Mi4xMzE0IDI1OS40NzMgNTMuNjI5NCAyNTkuOTYxIDUyLjc5ODUgMjYwLjQwNyA1Mi4yNjU4QzI2MS4yIDUxLjQ4MzcgMjYyLjI5NiA1MSAyNjMuNTA2IDUxWk0yNjMuNTg2IDY2LjAxODNDMjYwLjczNyA2Ni4wMTgzIDI1OS4zMTMgNjcuMTI0NSAyNTkuMzEzIDY5LjMzNyAyNTkuMzEzIDY5LjYxMDIgMjU5LjMzMiA2OS44NjA4IDI1OS4zNzEgNzAuMDg4N0wyNjEuNzk1IDg0LjAxNjEgMjY1LjM4IDg0LjAxNjEgMjY3LjgyMSA2OS43NDc1QzI2Ny44NiA2OS43MzA5IDI2Ny44NzkgNjkuNTg3NyAyNjcuODc5IDY5LjMxNzkgMjY3Ljg3OSA2Ny4xMTgyIDI2Ni40NDggNjYuMDE4MyAyNjMuNTg2IDY2LjAxODNaTTI2My41NzYgODYuMDU0N0MyNjEuMDQ5IDg2LjA1NDcgMjU5Ljc4NiA4Ny4zMDA1IDI1OS43ODYgODkuNzkyMSAyNTkuNzg2IDkyLjI4MzcgMjYxLjA0OSA5My41Mjk1IDI2My41NzYgOTMuNTI5NSAyNjYuMTE2IDkzLjUyOTUgMjY3LjM4NyA5Mi4yODM3IDI2Ny4zODcgODkuNzkyMSAyNjcuMzg3IDg3LjMwMDUgMjY2LjExNiA4Ni4wNTQ3IDI2My41NzYgODYuMDU0N1oiIGZpbGw9IiNGRkU1MDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIvPjwvZz48L3N2Zz4=) no-repeat 1rem/1.8rem, #b32121;
-    padding: 1rem 1rem 1rem 3.7rem;
+.sidebar-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: background 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+    background: var(--sidebar-hover);
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-item:hover {
+    background: var(--sidebar-hover);
+    color: white;
+    transform: translateX(4px);
+}
+
+.nav-item.active {
+    background: var(--primary);
     color: white;
 }
 
-    .blazor-error-boundary::after {
-        content: "An error has occurred."
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 60%;
+    background: white;
+    border-radius: 0 4px 4px 0;
+}
+
+.nav-icon {
+    font-size: 1.25rem;
+    min-width: 1.5rem;
+}
+
+.nav-text {
+    font-size: 0.95rem;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-avatar {
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.user-role {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.mobile-overlay {
+    display: none;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.content-wrapper {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.app-footer {
+    padding: 1.5rem 2rem;
+    background: white;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* ========== FORMS ========== */
+.btn {
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.form-control, .form-select {
+    border-radius: 0.5rem;
+    border: 2px solid var(--border-color);
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    outline: none;
+}
+
+/* ========== ERROR UI ========== */
+#blazor-error-ui {
+    background: var(--danger);
+    bottom: 0;
+    box-shadow: 0 -1px 10px rgba(0, 0, 0, 0.3);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .error-content {
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
     }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-    color: var(--bs-secondary-color);
-    text-align: end;
+    .sidebar-nav.collapsed {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
+
+    .mobile-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .mobile-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .sidebar-nav:not(.collapsed) {
+        transform: translateX(0);
+    }
+
+    .content-wrapper {
+        padding: 1rem;
+    }
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-    text-align: start;
+@media (max-width: 576px) {
+    .content-wrapper {
+        padding: 0.75rem;
+    }
+
+    .app-footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+    }
 }
+
+/* ========== UTILITY CLASSES ========== */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.bg-light { background: var(--light); }
+.bg-white { background: white; }
+
+/* Validation */
+.valid.modified:not([type=checkbox]) {
+    outline: 2px solid var(--success);
+}
+
+.invalid {
+    outline: 2px solid var(--danger);
+}
+
+.validation-message {
+    color: var(--danger);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+

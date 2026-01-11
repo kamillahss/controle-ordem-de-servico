@@ -1,0 +1,132 @@
+@using OsService.Web.ApiClients
+@inject ServiceOrdersApiClient ServiceOrdersApi
+@inject IJSRuntime JS
+
+<div class="modal fade" id="modal-atualizar-preco" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h3 class="modal-title">
+                    <i class="bi bi-currency-dollar me-2"></i>
+                    Atualizar Preço
+                </h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+
+            <div class="modal-body">
+                @if (OrdemServico is not null)
+                {
+                    <div class="mb-3">
+                        <p><strong>Ordem:</strong> #@OrdemServico.Number</p>
+                        <p><strong>Cliente:</strong> @OrdemServico.CustomerName</p>
+                        <p><strong>Preço Atual:</strong> 
+                            @if (OrdemServico.Price.HasValue)
+                            {
+                                <span class="text-success">@OrdemServico.Coin @OrdemServico.Price.Value.ToString("N2")</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">Não definido</span>
+                            }
+                        </p>
+                    </div>
+
+                    <hr />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Novo Preço *</label>
+                        <div class="input-group">
+                            <span class="input-group-text">R$</span>
+                            <input type="number" 
+                                   class="form-control" 
+                                   @bind="novoPreco" 
+                                   step="0.01" 
+                                   min="0"
+                                   placeholder="0,00" />
+                        </div>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(mensagemErro))
+                    {
+                        <div class="alert alert-danger mt-3">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            @mensagemErro
+                        </div>
+                    }
+                }
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" @onclick="Salvar" disabled="@salvando">
+                    @if (salvando)
+                    {
+                        <span class="spinner-border spinner-border-sm me-2"></span>
+                    }
+                    <span>Salvar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public ServiceOrderDto? OrdemServico { get; set; }
+    [Parameter] public EventCallback AoAtualizar { get; set; }
+
+    private decimal? novoPreco;
+    private bool salvando = false;
+    private string? mensagemErro;
+
+    public async Task Abrir(ServiceOrderDto ordem)
+    {
+        OrdemServico = ordem;
+        novoPreco = ordem.Price;
+        mensagemErro = null;
+        StateHasChanged();
+
+        await JS.InvokeVoidAsync("eval", @"
+            var modal = new bootstrap.Modal(document.getElementById('modal-atualizar-preco'));
+            modal.show();
+        ");
+    }
+
+    private async Task Salvar()
+    {
+        if (OrdemServico is null) return;
+
+        if (!novoPreco.HasValue || novoPreco.Value <= 0)
+        {
+            mensagemErro = "Informe um preço válido maior que zero.";
+            return;
+        }
+
+        salvando = true;
+        mensagemErro = null;
+
+        try
+        {
+            await ServiceOrdersApi.UpdatePriceAsync(OrdemServico.Id, novoPreco.Value);
+
+            await Fechar();
+            await AoAtualizar.InvokeAsync();
+        }
+        catch (Exception ex)
+        {
+            mensagemErro = $"Erro ao atualizar preço: {ex.Message}";
+        }
+        finally
+        {
+            salvando = false;
+        }
+    }
+
+    private async Task Fechar()
+    {
+        await JS.InvokeVoidAsync("eval", @"
+            var modal = bootstrap.Modal.getInstance(document.getElementById('modal-atualizar-preco'));
+            if (modal) modal.hide();
+        ");
+    }
+}
+

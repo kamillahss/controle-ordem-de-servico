@@ -1,29 +1,50 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">ControleOrdemDeServico</a>
+﻿<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="brand">
+            <i class="bi bi-gear-fill brand-icon"></i>
+            <span class="brand-text">Sistema OS</span>
+        </div>
+        <button class="sidebar-toggle" @onclick="ToggleSidebar">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+
+    <nav class="sidebar-nav @(isCollapsed ? "collapsed" : "")">
+        <NavLink class="nav-item" href="" Match="NavLinkMatch.All">
+            <i class="bi bi-house-door-fill nav-icon"></i>
+            <span class="nav-text">Dashboard</span>
+        </NavLink>
+
+        <NavLink class="nav-item" href="clientes">
+            <i class="bi bi-people-fill nav-icon"></i>
+            <span class="nav-text">Clientes</span>
+        </NavLink>
+
+        <NavLink class="nav-item" href="ordens-servico">
+            <i class="bi bi-clipboard-check-fill nav-icon"></i>
+            <span class="nav-text">Ordens de Serviço</span>
+        </NavLink>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <i class="bi bi-person-circle user-avatar"></i>
+            <div class="user-details">
+                <span class="user-name">Administrador</span>
+                <span class="user-role">v1.0</span>
+            </div>
+        </div>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<div class="mobile-overlay @(isCollapsed ? "" : "active")" @onclick="ToggleSidebar"></div>
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="nav flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+@code {
+    private bool isCollapsed = true;
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
+    private void ToggleSidebar()
+    {
+        isCollapsed = !isCollapsed;
+    }
+}
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>

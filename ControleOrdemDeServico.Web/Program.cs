@@ -1,4 +1,4 @@
-using OsService.Web;
+using OsService.Web.ApiClients;
 using OsService.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,12 +12,16 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddOutputCache();
 
-builder.Services.AddHttpClient<WeatherApiClient>(client =>
-    {
-        // This URL uses "https+http://" to indicate HTTPS is preferred over HTTP.
-        // Learn more about service discovery scheme resolution at https://aka.ms/dotnet/sdschemes.
-        client.BaseAddress = new("https+http://apiservice");
-    });
+// Add API clients
+builder.Services.AddHttpClient<CustomersApiClient>(client =>
+{
+    client.BaseAddress = new("https+http://apiservice");
+});
+
+builder.Services.AddHttpClient<ServiceOrdersApiClient>(client =>
+{
+    client.BaseAddress = new("https+http://apiservice");
+});
 
 var app = builder.Build();
 
