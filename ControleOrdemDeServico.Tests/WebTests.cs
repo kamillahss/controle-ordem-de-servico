@@ -7,7 +7,7 @@ public class WebTests
     private static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(30);
 
     [Fact]
-    public async Task GetWebResourceRootReturnsOkStatusCode()
+    public async Task ObterRaizDoRecursoWeb_RetornaCodigoDeStatusOk()
     {
         // Arrange
         var cancellationToken = TestContext.Current.CancellationToken;
