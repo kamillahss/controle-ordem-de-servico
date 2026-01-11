@@ -7,11 +7,14 @@ public sealed class ServiceOrderEntity
     public Guid Id { get; init; }
     public int Number { get; init; }
     public Guid CustomerId { get; init; }
+    public string CustomerName { get; init; } = default!;  // ← NOVO
     public string Description { get; init; } = default!;
     public ServiceOrderStatus Status { get; init; }
     public DateTime OpenedAt { get; init; }
+    public DateTime? StartedAt { get; init; }
+    public DateTime? FinishedAt { get; init; }
     public decimal? Price { get; init; }
-    public string? Coin { get; init; } = "BRL";//"USD", "EUR", "BRL", etc.
+    public string Coin { get; init; } = "BRL";
     public DateTime? UpdatedPriceAt { get; init; }
-
 }
+
