@@ -2,12 +2,12 @@
 
 namespace OsService.Infrastructure.Databases;
 
-public interface IDefaultSqlConnectionFactory
+public interface IOsServiceDbConnectionFactory
 {
     IDbConnection Create();
 }
 
-public interface IAdminSqlConnectionFactory
+public interface IMasterDbConnectionFactory
 {
     IDbConnection Create();
 }

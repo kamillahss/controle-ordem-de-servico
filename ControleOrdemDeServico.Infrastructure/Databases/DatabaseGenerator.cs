@@ -1,11 +1,8 @@
 ﻿using Dapper;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OsService.Infrastructure.Databases;
 
-public class DatabaseGenerantor(IAdminSqlConnectionFactory factory, IDefaultSqlConnectionFactory dc) 
+public class DatabaseGenerator(IMasterDbConnectionFactory masterFactory, IOsServiceDbConnectionFactory osServiceFactory) 
 {
     private const string CreateDbSql = @"
 IF DB_ID(N'OsServiceDb') IS NULL
@@ -38,9 +35,11 @@ BEGIN
         Description NVARCHAR(500) NOT NULL,
         Status INT NOT NULL,
         OpenedAt DATETIME2 NOT NULL,
+        StartedAt DATETIME2 NULL,
+        FinishedAt DATETIME2 NULL,
         Price DECIMAL(18, 2) NULL,
         Coin VARCHAR(4) NULL,
-        UpdatedPriceAt DATETIME NULL,
+        UpdatedPriceAt DATETIME2 NULL,
         CONSTRAINT FK_ServiceOrders_Customers
             FOREIGN KEY (CustomerId) REFERENCES dbo.Customers(Id)
     );
@@ -52,12 +51,13 @@ END;
 
     public async Task EnsureCreatedAsync(CancellationToken ct)
     {
-        using var conn = factory.Create();
+        // Create database if it doesn't exist
+        using var masterConn = masterFactory.Create();
+        await masterConn.ExecuteAsync(new CommandDefinition(CreateDbSql, cancellationToken: ct));
 
-        await conn.ExecuteAsync(new CommandDefinition(CreateDbSql, cancellationToken: ct));
-
-        var conDefault = dc.Create();
-        await conDefault.ExecuteAsync(new CommandDefinition(CreateTablesSql, cancellationToken: ct));
+        // Create tables
+        using var osServiceConn = osServiceFactory.Create();
+        await osServiceConn.ExecuteAsync(new CommandDefinition(CreateTablesSql, cancellationToken: ct));
     }
 
 }

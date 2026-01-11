@@ -16,4 +16,8 @@
     <ProjectReference Include="..\ControleOrdemDeServico.Infrastructure\OsService.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="V1\CreateCustomer\" />
+  </ItemGroup>
+
 </Project>
