@@ -13,30 +13,26 @@ public sealed class UpdateServiceOrderStatusHandler(
     public async Task<bool> Handle(UpdateServiceOrderStatusCommand request, CancellationToken ct)
     {
         if (request.ServiceOrderId == Guid.Empty)
-            throw new ArgumentException("ServiceOrderId is required.");
+            throw new ArgumentException("ServiceOrderId é obrigatório.");
 
         var serviceOrder = await repository.GetByIdAsync(request.ServiceOrderId, ct);
 
         if (serviceOrder is null)
             return false;
 
-        // Validate status transitions
         ValidateStatusTransition(serviceOrder.Status, request.NewStatus);
 
-        // Cannot change status of finished order
         if (serviceOrder.Status == ServiceOrderStatus.Finished)
-            throw new InvalidOperationException("Cannot change status of a finished Service Order.");
+            throw new InvalidOperationException("Não é possível alterar o status de uma ordem de serviço finalizada.");
 
         DateTime? startedAt = serviceOrder.StartedAt;
         DateTime? finishedAt = serviceOrder.FinishedAt;
 
-        // Set StartedAt when moving to InProgress
         if (request.NewStatus == ServiceOrderStatus.InProgress && !startedAt.HasValue)
         {
             startedAt = DateTime.UtcNow;
         }
 
-        // Set FinishedAt when moving to Finished
         if (request.NewStatus == ServiceOrderStatus.Finished)
         {
             finishedAt = DateTime.UtcNow;
@@ -52,7 +48,7 @@ public sealed class UpdateServiceOrderStatusHandler(
         if (success)
         {
             logger.LogInformation(
-                "Service Order {ServiceOrderId} status changed from {OldStatus} to {NewStatus}",
+                "Ordem de Serviço {ServiceOrderId} status alterado de {OldStatus} para {NewStatus}",
                 request.ServiceOrderId,
                 serviceOrder.Status,
                 request.NewStatus);
@@ -63,23 +59,18 @@ public sealed class UpdateServiceOrderStatusHandler(
 
     private static void ValidateStatusTransition(ServiceOrderStatus currentStatus, ServiceOrderStatus newStatus)
     {
-        // Open -> InProgress (allowed)
         if (currentStatus == ServiceOrderStatus.Open && newStatus == ServiceOrderStatus.InProgress)
             return;
 
-        // InProgress -> Finished (allowed)
         if (currentStatus == ServiceOrderStatus.InProgress && newStatus == ServiceOrderStatus.Finished)
             return;
 
-        // Open -> Finished (blocked)
         if (currentStatus == ServiceOrderStatus.Open && newStatus == ServiceOrderStatus.Finished)
-            throw new InvalidOperationException("Cannot change status from Open directly to Finished. Must go through InProgress first.");
+            throw new InvalidOperationException("Não é possível alterar o status de Aberta diretamente para Finalizada. Deve passar por Em Andamento primeiro.");
 
-        // Finished -> any (blocked)
         if (currentStatus == ServiceOrderStatus.Finished)
-            throw new InvalidOperationException("Cannot change status of a finished Service Order.");
+            throw new InvalidOperationException("Não é possível alterar o status de uma ordem de serviço finalizada.");
 
-        // Any other invalid transition
-        throw new InvalidOperationException($"Invalid status transition from {currentStatus} to {newStatus}.");
+        throw new InvalidOperationException($"Transição de status inválida de {currentStatus} para {newStatus}.");
     }
 }

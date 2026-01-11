@@ -15,17 +15,17 @@ public sealed class OpenServiceOrderHandler(
     public async Task<(Guid Id, int Number)> Handle(OpenServiceOrderCommand request, CancellationToken ct)
     {
         if (request.CustomerId == Guid.Empty)
-            throw new ArgumentException("CustomerId is required.");
+            throw new ArgumentException("CustomerId é obrigatório.");
 
         if (string.IsNullOrWhiteSpace(request.Description))
-            throw new ArgumentException("Description is required.");
+            throw new ArgumentException("Descrição é obrigatória.");
 
         if (request.Description.Length > 500)
-            throw new ArgumentException("Description must be <= 500 characters.");
+            throw new ArgumentException("Descrição deve ter no máximo 500 caracteres.");
 
         var customerExists = await customerRepository.ExistsAsync(request.CustomerId, ct);
         if (!customerExists)
-            throw new KeyNotFoundException($"Customer with ID {request.CustomerId} not found.");
+            throw new KeyNotFoundException($"Cliente com ID {request.CustomerId} não encontrado.");
 
         var serviceOrder = new ServiceOrderEntity
         {
@@ -39,7 +39,7 @@ public sealed class OpenServiceOrderHandler(
 
         var (id, number) = await serviceOrderRepository.InsertAsync(serviceOrder, ct);
 
-        logger.LogInformation("Service Order {Number} created for Customer {CustomerId}", number, request.CustomerId);
+        logger.LogInformation("Ordem de Serviço {Number} criada para Cliente {CustomerId}", number, request.CustomerId);
 
         return (id, number);
     }

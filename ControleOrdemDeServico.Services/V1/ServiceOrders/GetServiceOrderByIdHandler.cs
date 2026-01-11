@@ -17,7 +17,7 @@ public sealed class GetServiceOrderByIdHandler(IServiceOrderRepository repositor
             serviceOrder.Id,
             serviceOrder.Number,
             serviceOrder.CustomerId,
-            serviceOrder.CustomerName,  // ? NOVO
+            serviceOrder.CustomerName,
             serviceOrder.Description,
             serviceOrder.Status,
             serviceOrder.OpenedAt,

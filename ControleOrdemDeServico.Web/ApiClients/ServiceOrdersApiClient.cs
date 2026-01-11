@@ -12,7 +12,7 @@ public class ServiceOrdersApiClient(HttpClient httpClient)
         var response = await httpClient.PostAsJsonAsync("/api/v1/serviceorders", request, cancellationToken);
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<OpenServiceOrderResponse>(cancellationToken) 
-            ?? throw new InvalidOperationException("Failed to create service order");
+            ?? throw new InvalidOperationException("Falha ao criar ordem de serviço");
     }
 
     public async Task UpdateStatusAsync(Guid serviceOrderId, int status, CancellationToken cancellationToken = default)

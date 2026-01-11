@@ -3,9 +3,6 @@ using OsService.Infrastructure.Repository;
 
 namespace OsService.Services.V1.ServiceOrders;
 
-/// <summary>
-/// Handler responsável por buscar todas as ordens de serviço.
-/// </summary>
 public sealed class GetAllServiceOrdersHandler(IServiceOrderRepository repository) 
     : IRequestHandler<GetAllServiceOrdersQuery, IEnumerable<ServiceOrderDto>>
 {
@@ -17,7 +14,7 @@ public sealed class GetAllServiceOrdersHandler(IServiceOrderRepository repositor
             so.Id,
             so.Number,
             so.CustomerId,
-            so.CustomerName,  // ← NOVO
+            so.CustomerName,
             so.Description,
             so.Status,
             so.OpenedAt,

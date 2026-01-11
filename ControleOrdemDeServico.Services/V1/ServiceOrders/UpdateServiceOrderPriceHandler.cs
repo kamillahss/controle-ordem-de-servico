@@ -13,19 +13,18 @@ public sealed class UpdateServiceOrderPriceHandler(
     public async Task<bool> Handle(UpdateServiceOrderPriceCommand request, CancellationToken ct)
     {
         if (request.ServiceOrderId == Guid.Empty)
-            throw new ArgumentException("ServiceOrderId is required.");
+            throw new ArgumentException("ServiceOrderId é obrigatório.");
 
         if (request.Price < 0)
-            throw new ArgumentException("Price cannot be negative.");
+            throw new ArgumentException("Preço não pode ser negativo.");
 
         var serviceOrder = await repository.GetByIdAsync(request.ServiceOrderId, ct);
 
         if (serviceOrder is null)
             return false;
 
-        // Cannot change price of finished order
         if (serviceOrder.Status == ServiceOrderStatus.Finished)
-            throw new InvalidOperationException("Cannot change price of a finished Service Order.");
+            throw new InvalidOperationException("Não é possível alterar o preço de uma ordem de serviço finalizada.");
 
         var success = await repository.UpdatePriceAsync(
             request.ServiceOrderId,
@@ -36,7 +35,7 @@ public sealed class UpdateServiceOrderPriceHandler(
         if (success)
         {
             logger.LogInformation(
-                "Service Order {ServiceOrderId} price updated to {Price}",
+                "Ordem de Serviço {ServiceOrderId} preço atualizado para {Price}",
                 request.ServiceOrderId,
                 request.Price);
         }

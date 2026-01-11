@@ -8,9 +8,6 @@ namespace OsService.ApiService.Controllers;
 [Route("api/v1/customers")]
 public sealed class CustomersController(IMediator mediator) : ControllerBase
 {
-    /// <summary>
-    /// Lista todos os clientes cadastrados.
-    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken ct)
     {
@@ -18,23 +15,17 @@ public sealed class CustomersController(IMediator mediator) : ControllerBase
         return Ok(customers);
     }
 
-    /// <summary>
-    /// Busca um cliente específico por ID.
-    /// </summary>
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
         var customer = await mediator.Send(new GetCustomerByIdQuery(id), ct);
 
         if (customer is null)
-            return NotFound(new { error = "Customer not found" });
+            return NotFound(new { error = "Cliente não encontrado" });
 
         return Ok(customer);
     }
 
-    /// <summary>
-    /// Cria um novo cliente.
-    /// </summary>
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] CreateCustomerCommand cmd, CancellationToken ct)
     {

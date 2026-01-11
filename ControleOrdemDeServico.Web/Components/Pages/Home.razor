@@ -117,11 +117,9 @@ else
         
         try
         {
-            // Buscar dados dos clientes
             var clientes = await CustomersApi.GetCustomersAsync();
             totalClientes = clientes.Length;
 
-            // Buscar dados das ordens
             var ordens = await ServiceOrdersApi.GetServiceOrdersAsync();
             totalOrdens = ordens.Length;
             ordensAbertas = ordens.Count(o => o.Status == 0);

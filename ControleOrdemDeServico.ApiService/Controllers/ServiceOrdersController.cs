@@ -8,9 +8,6 @@ namespace OsService.ApiService.Controllers;
 [Route("api/v1/serviceorders")]
 public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
 {
-    /// <summary>
-    /// Lista todas as ordens de serviço.
-    /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetAll(CancellationToken ct)
     {
@@ -18,23 +15,17 @@ public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
         return Ok(serviceOrders);
     }
 
-    /// <summary>
-    /// Busca uma ordem de serviço específica por ID.
-    /// </summary>
     [HttpGet("{id:guid}")]
     public async Task<IActionResult> GetById(Guid id, CancellationToken ct)
     {
         var serviceOrder = await mediator.Send(new GetServiceOrderByIdQuery(id), ct);
 
         if (serviceOrder is null)
-            return NotFound(new { error = "Service Order not found" });
+            return NotFound(new { error = "Ordem de serviço não encontrada" });
 
         return Ok(serviceOrder);
     }
 
-    /// <summary>
-    /// Abre uma nova ordem de serviço.
-    /// </summary>
     [HttpPost]
     public async Task<IActionResult> Open([FromBody] OpenServiceOrderCommand cmd, CancellationToken ct)
     {
@@ -53,21 +44,18 @@ public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
         }
     }
 
-    /// <summary>
-    /// Atualiza o status de uma ordem de serviço.
-    /// </summary>
     [HttpPatch("{id:guid}/status")]
     public async Task<IActionResult> UpdateStatus(Guid id, [FromBody] UpdateServiceOrderStatusCommand cmd, CancellationToken ct)
     {
         if (id != cmd.ServiceOrderId)
-            return BadRequest(new { error = "Service Order ID mismatch" });
+            return BadRequest(new { error = "ID da ordem de serviço não corresponde" });
 
         try
         {
             var success = await mediator.Send(cmd, ct);
 
             if (!success)
-                return NotFound(new { error = "Service Order not found" });
+                return NotFound(new { error = "Ordem de serviço não encontrada" });
 
             return NoContent();
         }
@@ -81,21 +69,18 @@ public sealed class ServiceOrdersController(IMediator mediator) : ControllerBase
         }
     }
 
-    /// <summary>
-    /// Atualiza o preço de uma ordem de serviço.
-    /// </summary>
     [HttpPut("{id:guid}/price")]
     public async Task<IActionResult> UpdatePrice(Guid id, [FromBody] UpdateServiceOrderPriceCommand cmd, CancellationToken ct)
     {
         if (id != cmd.ServiceOrderId)
-            return BadRequest(new { error = "Service Order ID mismatch" });
+            return BadRequest(new { error = "ID da ordem de serviço não corresponde" });
 
         try
         {
             var success = await mediator.Send(cmd, ct);
 
             if (!success)
-                return NotFound(new { error = "Service Order not found" });
+                return NotFound(new { error = "Ordem de serviço não encontrada" });
 
             return NoContent();
         }

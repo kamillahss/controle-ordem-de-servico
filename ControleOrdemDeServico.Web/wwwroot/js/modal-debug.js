@@ -1,7 +1,3 @@
-// Teste Bootstrap Modal
-console.log('Bootstrap carregado:', typeof bootstrap !== 'undefined');
-console.log('Bootstrap Modal disponível:', typeof bootstrap?.Modal !== 'undefined');
-
 // Adiciona listener para debug de modals
 document.addEventListener('DOMContentLoaded', function() {
     const modalEl = document.getElementById('modal-formulario');

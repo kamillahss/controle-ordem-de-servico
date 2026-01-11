@@ -3,9 +3,6 @@ using OsService.Infrastructure.Repository;
 
 namespace OsService.Services.V1.Customers;
 
-/// <summary>
-/// Handler responsável por buscar todos os clientes cadastrados.
-/// </summary>
 public sealed class GetAllCustomersHandler(ICustomerRepository repository) 
     : IRequestHandler<GetAllCustomersQuery, IEnumerable<CustomerDto>>
 {

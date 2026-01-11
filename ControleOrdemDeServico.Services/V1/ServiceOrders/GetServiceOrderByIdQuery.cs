@@ -9,7 +9,7 @@ public sealed record ServiceOrderDto(
     Guid Id,
     int Number,
     Guid CustomerId,
-    string CustomerName,  // ? NOVO
+    string CustomerName,
     string Description,
     ServiceOrderStatus Status,
     DateTime OpenedAt,

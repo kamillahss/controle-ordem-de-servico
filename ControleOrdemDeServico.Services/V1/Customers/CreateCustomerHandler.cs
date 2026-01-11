@@ -16,14 +16,14 @@ public sealed class CreateCustomerHandler(
     public async Task<Guid> Handle(CreateCustomerCommand request, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(request.Name))
-            throw new ArgumentException("Name is required.");
+            throw new ArgumentException("Nome é obrigatório.");
 
         if (request.Name.Length < 2 || request.Name.Length > 150)
-            throw new ArgumentException("Name must be between 2 and 150 characters.");
+            throw new ArgumentException("Nome deve ter entre 2 e 150 caracteres.");
 
         var email = request.Email?.Trim();
         if (!string.IsNullOrEmpty(email) && !EmailRegex.IsMatch(email))
-            throw new ArgumentException("Email format is invalid.");
+            throw new ArgumentException("Formato de e-mail inválido.");
 
         var customer = new CustomerEntity
         {
@@ -37,7 +37,7 @@ public sealed class CreateCustomerHandler(
 
         await repository.InsertAsync(customer, ct);
 
-        logger.LogInformation("Customer {CustomerId} created with name {CustomerName}", customer.Id, customer.Name);
+        logger.LogInformation("Cliente {CustomerId} criado com nome {CustomerName}", customer.Id, customer.Name);
 
         return customer.Id;
     }
