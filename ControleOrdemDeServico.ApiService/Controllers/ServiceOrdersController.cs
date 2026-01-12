@@ -1,4 +1,8 @@
-﻿using OsService.Services.V1.ServiceOrders;
+﻿using OsService.Services.V1.ServiceOrders.OpenServiceOrder;
+using OsService.Services.V1.ServiceOrders.GetAllServiceOrders;
+using OsService.Services.V1.ServiceOrders.GetServiceOrderById;
+using OsService.Services.V1.ServiceOrders.UpdateServiceOrderPrice;
+using OsService.Services.V1.ServiceOrders.UpdateServiceOrderStatus;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

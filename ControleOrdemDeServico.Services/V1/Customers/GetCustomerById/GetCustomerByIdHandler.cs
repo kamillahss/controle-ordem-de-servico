@@ -1,7 +1,7 @@
 using MediatR;
 using OsService.Infrastructure.Repository;
 
-namespace OsService.Services.V1.Customers;
+namespace OsService.Services.V1.Customers.GetCustomerById;
 
 public sealed class GetCustomerByIdHandler(ICustomerRepository repository)
     : IRequestHandler<GetCustomerByIdQuery, CustomerDto?>

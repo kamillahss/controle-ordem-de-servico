@@ -1,4 +1,6 @@
-﻿using OsService.Services.V1.Customers;
+﻿using OsService.Services.V1.Customers.CreateCustomer;
+using OsService.Services.V1.Customers.GetAllCustomers;
+using OsService.Services.V1.Customers.GetCustomerById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

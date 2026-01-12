@@ -1,7 +1,7 @@
 using MediatR;
 using OsService.Infrastructure.Repository;
 
-namespace OsService.Services.V1.ServiceOrders;
+namespace OsService.Services.V1.ServiceOrders.GetServiceOrderById;
 
 public sealed class GetServiceOrderByIdHandler(IServiceOrderRepository repository)
     : IRequestHandler<GetServiceOrderByIdQuery, ServiceOrderDto?>

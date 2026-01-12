@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace OsService.Services.V1.ServiceOrders;
+namespace OsService.Services.V1.ServiceOrders.OpenServiceOrder;
 
 public sealed record OpenServiceOrderCommand(
     Guid CustomerId,

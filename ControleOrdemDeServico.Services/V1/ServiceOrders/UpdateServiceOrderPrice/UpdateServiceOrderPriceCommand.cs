@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace OsService.Services.V1.ServiceOrders;
+namespace OsService.Services.V1.ServiceOrders.UpdateServiceOrderPrice;
 
 public sealed record UpdateServiceOrderPriceCommand(
     Guid ServiceOrderId,

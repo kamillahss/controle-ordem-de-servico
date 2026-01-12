@@ -2,7 +2,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using OsService.Domain.Entities;
 using OsService.Infrastructure.Repository;
-using OsService.Services.V1.Customers;
+using OsService.Services.V1.Customers.CreateCustomer;
 
 namespace OsService.Tests.Services.Customers;
 

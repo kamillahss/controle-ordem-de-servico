@@ -3,19 +3,19 @@ using Microsoft.Extensions.Logging;
 using OsService.Domain.Enums;
 using OsService.Infrastructure.Repository;
 
-namespace OsService.Services.V1.ServiceOrders;
+namespace OsService.Services.V1.ServiceOrders.UpdateServiceOrderStatus;
 
 public sealed class UpdateServiceOrderStatusHandler(
     IServiceOrderRepository repository,
     ILogger<UpdateServiceOrderStatusHandler> logger
 ) : IRequestHandler<UpdateServiceOrderStatusCommand, bool>
 {
-    public async Task<bool> Handle(UpdateServiceOrderStatusCommand request, CancellationToken ct)
+    public async Task<bool> Handle(UpdateServiceOrderStatusCommand request, CancellationToken cancellationToken)
     {
         if (request.ServiceOrderId == Guid.Empty)
             throw new ArgumentException("ServiceOrderId é obrigatório.");
 
-        var serviceOrder = await repository.GetByIdAsync(request.ServiceOrderId, ct);
+        var serviceOrder = await repository.GetByIdAsync(request.ServiceOrderId, cancellationToken);
 
         if (serviceOrder is null)
             return false;
@@ -43,7 +43,7 @@ public sealed class UpdateServiceOrderStatusHandler(
             (int)request.NewStatus,
             startedAt,
             finishedAt,
-            ct);
+            cancellationToken);
 
         if (success)
         {

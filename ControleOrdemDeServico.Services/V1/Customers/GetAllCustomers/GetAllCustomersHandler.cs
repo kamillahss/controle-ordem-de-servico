@@ -1,7 +1,8 @@
 using MediatR;
 using OsService.Infrastructure.Repository;
+using OsService.Services.V1.Customers.GetCustomerById;
 
-namespace OsService.Services.V1.Customers;
+namespace OsService.Services.V1.Customers.GetAllCustomers;
 
 public sealed class GetAllCustomersHandler(ICustomerRepository repository)
     : IRequestHandler<GetAllCustomersQuery, IEnumerable<CustomerDto>>

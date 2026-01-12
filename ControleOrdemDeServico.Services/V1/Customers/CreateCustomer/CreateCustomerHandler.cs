@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using System.Text.RegularExpressions;
 
-namespace OsService.Services.V1.Customers;
+namespace OsService.Services.V1.Customers.CreateCustomer;
 
 public sealed class CreateCustomerHandler(
     ICustomerRepository repository,

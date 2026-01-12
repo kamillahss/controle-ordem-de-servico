@@ -4,7 +4,7 @@ using OsService.Infrastructure.Repository;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace OsService.Services.V1.ServiceOrders;
+namespace OsService.Services.V1.ServiceOrders.OpenServiceOrder;
 
 public sealed class OpenServiceOrderHandler(
     ICustomerRepository customerRepository,
@@ -12,7 +12,7 @@ public sealed class OpenServiceOrderHandler(
     ILogger<OpenServiceOrderHandler> logger
 ) : IRequestHandler<OpenServiceOrderCommand, (Guid Id, int Number)>
 {
-    public async Task<(Guid Id, int Number)> Handle(OpenServiceOrderCommand request, CancellationToken ct)
+    public async Task<(Guid Id, int Number)> Handle(OpenServiceOrderCommand request, CancellationToken cancellationToken)
     {
         if (request.CustomerId == Guid.Empty)
             throw new ArgumentException("CustomerId é obrigatório.");
@@ -23,7 +23,7 @@ public sealed class OpenServiceOrderHandler(
         if (request.Description.Length > 500)
             throw new ArgumentException("Descrição deve ter no máximo 500 caracteres.");
 
-        var customerExists = await customerRepository.ExistsAsync(request.CustomerId, ct);
+        var customerExists = await customerRepository.ExistsAsync(request.CustomerId, cancellationToken);
         if (!customerExists)
             throw new KeyNotFoundException($"Cliente com ID {request.CustomerId} não encontrado.");
 
@@ -37,7 +37,7 @@ public sealed class OpenServiceOrderHandler(
             Coin = "BRL"
         };
 
-        var (id, number) = await serviceOrderRepository.InsertAsync(serviceOrder, ct);
+        var (id, number) = await serviceOrderRepository.InsertAsync(serviceOrder, cancellationToken);
 
         logger.LogInformation("Ordem de Serviço {Number} criada para Cliente {CustomerId}", number, request.CustomerId);
 

@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace OsService.Services.V1.Customers;
+namespace OsService.Services.V1.Customers.GetCustomerById;
 
 public sealed record GetCustomerByIdQuery(Guid CustomerId) : IRequest<CustomerDto?>;
 
